@@ -16,6 +16,8 @@ class RestaurantDetailMapCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        mapView.layer.cornerRadius = 10
+        mapView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
