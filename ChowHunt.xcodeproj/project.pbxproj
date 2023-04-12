@@ -12,6 +12,7 @@
 		955E9B2B29C7B029009315CF /* RestaurantDetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955E9B2A29C7B029009315CF /* RestaurantDetailTextCell.swift */; };
 		9563E7B629C00A5500D883ED /* Nunito-Italic-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9563E7B429C0093100D883ED /* Nunito-Italic-VariableFont_wght.ttf */; };
 		9563E7B729C00A5500D883ED /* Nunito-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9563E7B529C0093100D883ED /* Nunito-VariableFont_wght.ttf */; };
+		9570D7E029E63C00002F3C60 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9570D7DF29E63C00002F3C60 /* MapViewController.swift */; };
 		959E4F9E29DBB71D006AD37B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959E4F9D29DBB71D006AD37B /* MapKit.framework */; };
 		959E4FA029DBB915006AD37B /* RestaurantDetailMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959E4F9F29DBB915006AD37B /* RestaurantDetailMapCell.swift */; };
 		95A18359299002E0001D6D0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A18358299002E0001D6D0C /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 		955E9B2A29C7B029009315CF /* RestaurantDetailTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTextCell.swift; sourceTree = "<group>"; };
 		9563E7B429C0093100D883ED /* Nunito-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		9563E7B529C0093100D883ED /* Nunito-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		9570D7DF29E63C00002F3C60 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		959E4F9D29DBB71D006AD37B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		959E4F9F29DBB915006AD37B /* RestaurantDetailMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailMapCell.swift; sourceTree = "<group>"; };
 		95A18355299002E0001D6D0C /* ChowHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChowHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +89,7 @@
 				95A1836C29900AB5001D6D0C /* RestarauntTableViewController.swift */,
 				95A22FE129B824D800A5EA76 /* RestaurantDetailViewController.swift */,
 				95CC43EA29D3CB080033108D /* NavigationController.swift */,
+				9570D7DF29E63C00002F3C60 /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				95A22FE229B824D800A5EA76 /* RestaurantDetailViewController.swift in Sources */,
 				951A7CB829C401D8007EE9ED /* RestaurantDetailViewHeader.swift in Sources */,
 				95A1835B299002E0001D6D0C /* SceneDelegate.swift in Sources */,
+				9570D7E029E63C00002F3C60 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
