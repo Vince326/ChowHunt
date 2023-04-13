@@ -42,7 +42,7 @@ class RestaurantDetailViewController: UIViewController {
         restaurantNameLabel.text = restaurant.name
         restaurantLocationLabel.text = restaurant.location
        
-        
+        navigationItem.backButtonTitle = ""
         
     }
     

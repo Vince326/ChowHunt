@@ -16,8 +16,13 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
 
         // Do any additional setup after loading the view.
+        
+        mapView.showsScale = true
+        mapView.showsCompass = true
+        mapView.showsTraffic = true
         
         let geoCoder = CLGeocoder()
         
@@ -45,14 +50,37 @@ class MapViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
+    
+//    // MARK: - Navigation
+//
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destination.
+//        // Pass the selected object to the new view controller.
+//        navigationItem.backButtonTitle = " "
+//    }
+    
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension MapViewController : MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "MyMarker"
+        
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
+        }
+        
+        //Resue the annotation if possible
+        var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        
+        annotationView?.glyphImage = UIImage(systemName: "arrowtriangle.down.circle")
+        annotationView?.markerTintColor = UIColor.orange
+        
+        return annotationView
+        
     }
-    */
-
 }
