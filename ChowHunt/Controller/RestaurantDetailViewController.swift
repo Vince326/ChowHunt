@@ -63,11 +63,19 @@ class RestaurantDetailViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-        if segue.identifier == "displayMap" {
-            // Pass the selected object to the new view controller.
+        switch segue.identifier {
+        case "displayMap":
+            // Pass the selected object to the MapViewcontroller.
             let destinationController = segue.destination as! MapViewController
             
             destinationController.restaurant = restaurant
+            
+        case "showReview":
+            //Navigates the object to reviewViewController
+            let destinationController = segue.destination as! ReviewViewController
+            destinationController.restaurant = restaurant
+            
+        default: break
         }
         
     }
