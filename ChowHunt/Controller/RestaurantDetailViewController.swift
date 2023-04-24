@@ -15,16 +15,16 @@ class RestaurantDetailViewController: UIViewController {
     @IBOutlet var restaurantLocationLabel: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var headerview:RestaurantDetailViewHeader!
-   
+    
     var restaurant: Restaurant = Restaurant()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .automatic
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         // Do any additional setup after loading the view.
         
         //Configure the header view
@@ -41,7 +41,7 @@ class RestaurantDetailViewController: UIViewController {
         restaurantTypeLabel.text = restaurant.type
         restaurantNameLabel.text = restaurant.name
         restaurantLocationLabel.text = restaurant.location
-       
+        
         navigationItem.backButtonTitle = ""
         
     }
@@ -57,10 +57,10 @@ class RestaurantDetailViewController: UIViewController {
         
     }
     
-
+    
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         switch segue.identifier {
@@ -78,6 +78,34 @@ class RestaurantDetailViewController: UIViewController {
         default: break
         }
         
+    }
+    
+    @IBAction func close (segue: UIStoryboardSegue) {
+        dismiss(animated:true, completion: nil)
+    }
+    
+    @IBAction func rateRestaurant(segue: UIStoryboardSegue) {
+        guard let identifier = segue.identifier else {
+            return
+        }
+        
+        dismiss(animated: true,completion: {
+            
+            if let rating = Restaurant.Rating(rawValue: identifier) {
+                self.restaurant.rating = rating
+                self.headerview.ratingImageView.image = UIImage(named: rating.image)
+            }
+            
+            let scaleTransform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
+            self.headerview.ratingImageView.transform = scaleTransform
+            self.headerview.ratingImageView.alpha = 0
+            
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.3,initialSpringVelocity: 0.7, options: [], animations: {
+                self.headerview.ratingImageView.transform = .identity
+                self.headerview.ratingImageView.alpha = 1
+            }, completion: nil)
+            
+        })
     }
     
     
@@ -114,12 +142,11 @@ extension RestaurantDetailViewController: UITableViewDataSource, UITableViewDele
             cell.configure(location: restaurant.location)
             cell.selectionStyle = .none
             
-          return cell
+            return cell
             
         default:
             fatalError("Failed to instantiate the tableView for Detail View Controller")
         }
     }
-    
     
 }
