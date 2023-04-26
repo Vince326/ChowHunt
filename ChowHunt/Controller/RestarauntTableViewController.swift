@@ -9,6 +9,7 @@ import UIKit
 
 class RestaurantTableViewController: UITableViewController {
     
+    
     lazy var dataSource = configureDataSouce()
     
     //MARK: - ViewController Life Cycle
@@ -292,5 +293,8 @@ class RestaurantTableViewController: UITableViewController {
                  }
              }
             
-            
+    @IBAction func unwindToHome (segue: UIStoryboardSegue) {
+        dismiss(animated: true,completion: nil)
+    }
+    
             }

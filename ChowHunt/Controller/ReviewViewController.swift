@@ -14,12 +14,12 @@ class ReviewViewController: UIViewController {
     @IBOutlet var closeButton: UIButton!
     
     var restaurant = Restaurant()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         backgroundImageView.image = UIImage(named: restaurant.image)
-
+        
         // Do any additional setup after loading the view.
         
         //Applies Blur Effect
@@ -37,8 +37,8 @@ class ReviewViewController: UIViewController {
         
         // Make the button invisible and move off the screen
         for rateButton in rateButtons {
-        rateButton.transform = moveScaleTransform
-        rateButton.alpha = 0
+            rateButton.transform = moveScaleTransform
+            rateButton.alpha = 0
         }
         
         closeButton.transform = moveOutTransform
@@ -48,59 +48,27 @@ class ReviewViewController: UIViewController {
     override func viewWillAppear (_ animated: Bool) {
         
         UIView.animate(withDuration: 0.8, delay: 0.1, usingSpringWithDamping: 0.2,
-        initialSpringVelocity: 0.3, options: [], animations: {
-        self.rateButtons[0].alpha = 1.0
-        self.rateButtons[0].transform = .identity
+                       initialSpringVelocity: 0.3, options: [], animations: {
+            self.rateButtons[0].alpha = 1.0
+            self.rateButtons[0].transform = .identity
         }, completion: nil)
         
         UIView.animate(withDuration: 0.4, delay: 0.15, options: [], animations
-        : {
-        self.rateButtons[1].alpha = 1.0
-//        self.rateButtons[1].transform = .identity
-//        }, completion: nil)
-//
-//        UIView.animate(withDuration: 0.4, delay: 0.2, options: [], animations:
-//        {
-//        self.rateButtons[2].alpha = 1.0
-//        self.rateButtons[2].transform = .identity
-//        }, completion: nil)
-//
-//        UIView.animate(withDuration: 0.4, delay: 0.25, options: [], animations
-//        : {
-//        self.rateButtons[3].alpha = 1.0
-//        self.rateButtons[3].transform = .identity
-//        }, completion: nil)
-//
-//        UIView.animate(withDuration: 0.4, delay: 0.3, options: [], animations:
-//        {
-//        self.rateButtons[4].alpha = 1.0
-//        self.rateButtons[4].transform = .identity
-//        }, completion: nil)
-        
+                       : {
+            self.rateButtons[1].alpha = 1.0
             // For loop attempt at animating buttons and changing alpha levels
-        for index in 0...4 {
-            UIView.animate(withDuration: 0.4, delay: (0.1 + 0.5 * Double(index)), options: [], animations: {
-                self.rateButtons[index].alpha = 1.0
-                self.rateButtons[index].transform = .identity
-            },completion: nil)
-        }
+            for index in 0...4 {
+                UIView.animate(withDuration: 0.4, delay: (0.1 + 0.5 * Double(index)), options: [], animations: {
+                    self.rateButtons[index].alpha = 1.0
+                    self.rateButtons[index].transform = .identity
+                },completion: nil)
+            }
             UIView.animate(withDuration: 0.4, delay: 0.2, options: [], animations: {
                 self.closeButton.transform = .identity
-           }, completion: nil)
-           
-    }
-    
-    //Animates the Close Button for Review ViewController
-    
-     
-    /*
-    // MARK: - Navigation
+            }, completion: nil)
+            
+        }
+                
+    )}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
+        }
