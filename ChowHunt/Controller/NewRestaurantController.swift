@@ -7,7 +7,44 @@
 
 import UIKit
 
-class NewRestaurantController: UITableViewController {
+class NewRestaurantController: UITableViewController, UITextFieldDelegate {
+    
+    @IBOutlet var nameTextField: RoundedTextField! {
+        didSet {
+            nameTextField.tag = 1
+            nameTextField.becomeFirstResponder()
+            nameTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet var typeTextField: RoundedTextField! {
+        didSet {
+            typeTextField.tag = 2
+            typeTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet var addressTextField: RoundedTextField! {
+        didSet {
+            addressTextField.tag = 3
+            addressTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet var phoneTextField: RoundedTextField! {
+        didSet {
+            phoneTextField.tag = 4
+            phoneTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet var descriptionTextView: UITextView! {
+        didSet {
+            descriptionTextView.tag = 5
+            descriptionTextView.layer.cornerRadius = 18.0
+            descriptionTextView.layer.masksToBounds = true
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +58,7 @@ class NewRestaurantController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+    
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,4 +115,14 @@ class NewRestaurantController: UITableViewController {
     }
     */
 
+}
+
+extension NewRestaurantController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextTextField = view.viewWithTag(textField.tag + 1){
+            textField.resignFirstResponder()
+            nextTextField.becomeFirstResponder()
+        }
+        return true
+    }
 }
