@@ -443,7 +443,7 @@
         <!--New Restaurant-->
         <scene sceneID="aUv-pg-gMv">
             <objects>
-                <tableViewController id="PYO-Gf-rxX" sceneMemberID="viewController">
+                <tableViewController id="PYO-Gf-rxX" customClass="NewRestaurantController" customModule="ChowHunt" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Dzu-2K-iPc">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -649,6 +649,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="jwx-Go-Uhc" id="prA-9j-jU4"/>
+                        <outlet property="descriptionTextView" destination="VSg-fQ-N66" id="2Ze-4y-XLL"/>
+                        <outlet property="nameTextField" destination="1uQ-W5-y1D" id="Y4w-NK-ItH"/>
+                        <outlet property="phoneTextField" destination="qtx-CJ-N38" id="zOG-L6-fod"/>
+                        <outlet property="typeTextField" destination="BCt-YV-vop" id="Gg6-WK-g22"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CjO-BP-OR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="MLP-oA-XX2" userLabel="Exit" sceneMemberID="exit"/>

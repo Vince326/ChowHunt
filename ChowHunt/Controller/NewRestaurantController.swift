@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewRestaurantController: UITableViewController, UITextFieldDelegate {
+class NewRestaurantController: UITableViewController {
     
     @IBOutlet var nameTextField: RoundedTextField! {
         didSet {
@@ -49,16 +49,72 @@ class NewRestaurantController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //Customizes the UI NavgationBar's appearance
+         
+        if let appearance = navigationController?.navigationBar.standardAppearance {
+            if let customFont = UIFont(name: "Nunito-Bold", size: 40.0) {
+                appearance.titleTextAttributes = [.foregroundColor: UIColor(named:"NavigationBarTitle")!]
+                appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "NavigationBarTitle")!, .font: customFont]
+            }
+            
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.compactAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            
+                
+        }
     }
 
     // MARK: - Table view data source
 
-    
+    //Triggers the actionsheet for selecting the photo source
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let photoSourceRequestController = UIAlertController(title: "", message: "Choose your photo Source", preferredStyle: .actionSheet)
+            
+            // Triggers action if the camera is selected.
+            let cameraAction = UIAlertAction (title: "Camera", style: .default, handler: {
+                (action) in
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    let imagePicker = UIImagePickerController()
+                    imagePicker.allowsEditing = false
+                    imagePicker.sourceType = .camera
+                    
+                    self.present(imagePicker, animated: true, completion: nil)
+                }
+            })
+            
+                //Triggers action if the photo library is selected.
+            let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: {
+                (action) in
+                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                    let imagePicker = UIImagePickerController()
+                    imagePicker.allowsEditing = false
+                    imagePicker.sourceType = .photoLibrary
+                    
+                    self.present(imagePicker, animated: true, completion: nil)
+                }
+            })
+            
+            //Cancel the action
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+            
+            photoSourceRequestController.addAction(cameraAction)
+            photoSourceRequestController.addAction(photoLibraryAction)
+            photoSourceRequestController.addAction(cancelAction)
+            
+            //Configuration for IPad
+            
+            if let popoverController = photoSourceRequestController.popoverPresentationController {
+                if let cell = tableView.cellForRow(at: indexPath){
+                    popoverController.sourceView = cell
+                    popoverController.sourceRect = cell.bounds
+                }
+            }
+            
+            present(photoSourceRequestController, animated: true, completion: nil)
+        }
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,7 +171,9 @@ class NewRestaurantController: UITableViewController, UITextFieldDelegate {
     }
     */
 
+    
 }
+
 
 extension NewRestaurantController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
