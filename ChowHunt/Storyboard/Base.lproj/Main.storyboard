@@ -458,17 +458,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="430" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newphoto" translatesAutoresizingMaskIntoConstraints="NO" id="e0t-Br-h58">
-                                                    <rect key="frame" x="20" y="11" width="390" height="148"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="newphoto" translatesAutoresizingMaskIntoConstraints="NO" id="e0t-Br-h58">
+                                                    <rect key="frame" x="20" y="11" width="1840" height="1380"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="e0t-Br-h58" secondAttribute="trailing" id="4zi-5t-oqR"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="e0t-Br-h58" secondAttribute="bottom" id="AWz-bP-w6C"/>
-                                                <constraint firstItem="e0t-Br-h58" firstAttribute="top" secondItem="87p-UT-tGW" secondAttribute="topMargin" id="Yh0-rw-Lrl"/>
-                                                <constraint firstItem="e0t-Br-h58" firstAttribute="leading" secondItem="87p-UT-tGW" secondAttribute="leadingMargin" id="oVu-J9-LD1"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="75" id="MNP-kN-1Z7">
@@ -654,6 +649,7 @@
                         <outlet property="descriptionTextView" destination="VSg-fQ-N66" id="2Ze-4y-XLL"/>
                         <outlet property="nameTextField" destination="1uQ-W5-y1D" id="Y4w-NK-ItH"/>
                         <outlet property="phoneTextField" destination="qtx-CJ-N38" id="zOG-L6-fod"/>
+                        <outlet property="photoImageView" destination="e0t-Br-h58" id="uEb-vC-H8k"/>
                         <outlet property="typeTextField" destination="BCt-YV-vop" id="Gg6-WK-g22"/>
                     </connections>
                 </tableViewController>

@@ -45,6 +45,13 @@ class NewRestaurantController: UITableViewController {
             descriptionTextView.layer.masksToBounds = true
         }
     }
+    
+    @IBOutlet var photoImageView: UIImageView! {
+        didSet {
+            photoImageView.layer.cornerRadius = 10
+            photoImageView.layer.masksToBounds = true
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +70,31 @@ class NewRestaurantController: UITableViewController {
             
                 
         }
+        //Constraining the ImageView in the ViewController Programatically
+        
+        //Get the superview's layout
+        let margins = photoImageView.superview!.layoutMarginsGuide
+        
+        //Disable Auto resizing mask to use auto layout programatically
+        photoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //Pin the leading edge of the ImageView to the Leading Edge of the Margin
+        photoImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        
+        //Pin the trailing edge of the ImageView to the Trailing Edge of the Margin
+        photoImageView.trailingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        
+        //Pin the top edge of the ImageView to the margin's top edge
+        photoImageView.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        
+        //Pin the bottom edge of the ImageView to the margin's bottom edge
+        photoImageView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+        
+        
+        //Code to dismiss the keyboard
+        let tap = UIGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
 
     // MARK: - Table view data source
@@ -77,6 +109,7 @@ class NewRestaurantController: UITableViewController {
                 (action) in
                 if UIImagePickerController.isSourceTypeAvailable(.camera) {
                     let imagePicker = UIImagePickerController()
+                    imagePicker.delegate = self
                     imagePicker.allowsEditing = false
                     imagePicker.sourceType = .camera
                     
@@ -89,6 +122,7 @@ class NewRestaurantController: UITableViewController {
                 (action) in
                 if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                     let imagePicker = UIImagePickerController()
+                    imagePicker.delegate = self
                     imagePicker.allowsEditing = false
                     imagePicker.sourceType = .photoLibrary
                     
@@ -182,5 +216,19 @@ extension NewRestaurantController: UITextFieldDelegate {
             nextTextField.becomeFirstResponder()
         }
         return true
+    }
+}
+
+extension NewRestaurantController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            photoImageView.image = selectedImage
+            photoImageView.contentMode = .scaleAspectFill
+            photoImageView.clipsToBounds = true
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }
